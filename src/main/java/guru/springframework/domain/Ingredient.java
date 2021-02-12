@@ -56,4 +56,5 @@ public class Ingredient {
     public void setUom(UnitOfMeasure uom) {
         this.uom = uom;
     }
+
 }
