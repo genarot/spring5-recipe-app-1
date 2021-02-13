@@ -12,7 +12,7 @@ public class Category {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Recipe> recipes;
 
     public Long getId() {
@@ -37,5 +37,14 @@ public class Category {
 
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", recipes=" + recipes +
+                '}';
     }
 }
