@@ -11,6 +11,9 @@ public class UnitOfMeasure {
     @Column(name = "description")
     private String description;
 
+    public UnitOfMeasure() {
+    }
+
     public Long getId() {
         return id;
     }

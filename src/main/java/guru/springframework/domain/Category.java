@@ -12,6 +12,7 @@ public class Category {
     @Column(name = "description")
     private String description;
 
+//    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Recipe> recipes;
 

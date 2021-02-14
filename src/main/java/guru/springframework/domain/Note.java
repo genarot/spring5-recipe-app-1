@@ -39,4 +39,12 @@ public class Note {
     public void setRecipeNotes(String recipeNotes) {
         this.recipeNotes = recipeNotes;
     }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", recipeNotes='" + recipeNotes + '\'' +
+                '}';
+    }
 }
