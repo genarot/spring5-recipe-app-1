@@ -4,6 +4,7 @@ import guru.springframework.domain.*;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 // ApplicationListener<ContextRefreshEvent> is taken from Spring framework
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private final CategoryRepository categoryRepository;
@@ -32,7 +34,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         List<Recipe> recipes = this.getRecipes();
         recipeRepository.saveAll(recipes);
-//        System.out.println(recipes);
+        log.debug("Loading Bootstrap data");
     }
 
     private List<Recipe> getRecipes() {

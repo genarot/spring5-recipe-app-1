@@ -1,7 +1,11 @@
 package guru.springframework.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class UnitOfMeasure {
     @Id
@@ -10,31 +14,4 @@ public class UnitOfMeasure {
 
     @Column(name = "description")
     private String description;
-
-    public UnitOfMeasure() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "UnitOfMeasure{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
