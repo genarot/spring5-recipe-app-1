@@ -1,11 +1,15 @@
 package guru.springframework.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Note {
@@ -17,7 +21,7 @@ public class Note {
     @OneToOne
     private Recipe recipe;
 
-    @Column(name = "recipe_notes")
     @Lob
+    @Column(name = "recipe_notes")
     private String recipeNotes;
 }
