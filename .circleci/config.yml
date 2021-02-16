@@ -1,30 +1,9 @@
-jobs:
-  build:
-    docker:
-      -
-        image: "circleci/openjdk:11-browsers-legacy"
-    environment:
-      MAVEN_OPTS: "-Xmx3200m"
-    steps:
-      - checkout
-      -
-        restore_cache:
-          keys:
-            - "sfg_recipe_project-{‌{ checksum \"pom.xml\" }}"
-            - v1-dependencies-
-      -
-        run: "mvn dependency:go-offline"
-      -
-        save_cache:
-          key: "sfg_recipe_project-{‌{ checksum \"pom.xml\" }}"
-          paths:
-            - ~/.m2
-      -
-        run: "mvn integration-test cobertura:cobertura"
-      -
-        store_test_results:
-          path: target/surefire-reports
-      -
-        run:
-          command: "bash <(curl -s https://codecov.io/bash)"
-          name: "Send to CodeCov"
+version: 2.1
+
+orbs:
+  maven: circleci/maven@0.0.12
+
+workflows:
+  maven_test:
+    jobs:
+      - maven/test # checkout, build, test, and upload test results
