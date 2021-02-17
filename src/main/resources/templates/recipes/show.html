@@ -16,14 +16,23 @@
 
             <div class="card mb-3">
                 <div class="card-header bg-primary text-light mb-3">
-                    <h1 class="card-title" th:text="${recipe.getDescription()}">Recipe Description Here!</h1>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h1 class="card-title" th:text="${recipe.getDescription()}">Recipe Description Here!</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-secondary" href="#"
+                               th:href="@{'/recipe/' + ${recipe.id} + '/image'}">Change Image
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
                             <h5>Categories:</h5>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-3 col-lg-5">
                             <ul>
                                 <li th:remove="all">cat one</li>
                                 <li th:remove="all">cat two</li>
@@ -31,6 +40,11 @@
                                     cat three
                                 </li>
                             </ul>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <img src="../../static/images/guacamole400x400WithX.jpg"
+                                 th:src="@{/images/guacamole400x400WithX.jpg}"
+                                 width="200" height="200">
                         </div>
                     </div>
                     <div class="row">
@@ -72,7 +86,7 @@
                             <h5>URL:</h5>
                         </div>
                         <div class="col-md-3">
-                            <p th:text="${recipe.url}" >http://www.example.com</p>
+                            <a th:href="${recipe.url}" target="_blank">View Original</a>
                         </div>
                     </div>
                 </div>
@@ -81,10 +95,10 @@
             <div class="card mb-3">
                 <div class="card-header bg-primary text-light mb-3">
                     <div class="row">
-                        <div class="col-md-10 col-lg-11">
+                        <div class="col-md-10 col-xl-11">
                             <h1 class="card-title">Ingredients</h1>
                         </div>
-                        <div class="col-md-2 col-lg-1">
+                        <div class="col-md-2 col-xl-1">
                             <a class="btn btn-light" th:href="${'/recipe/' + recipe.getId() + '/ingredients' }">
                                 View
                             </a>
