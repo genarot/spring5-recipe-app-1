@@ -25,7 +25,7 @@
 <body>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="justify-content-center">
-        <div class="col-md-8 col-lg-6 offset-md-3">
+        <div class="col-md-8 col-lg-7 col-xl-6 offset-md-3">
             <form  th:object="${recipe}" th:action="@{/recipe/}"  method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="panel-group">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-6 form-group">
                                     <label><b>Recipe Description:</b></label>
                                     <input type="text" class="form-control" th:field="*{description}"/>
                                 </div>
@@ -60,17 +60,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label><b>Prep Time:</b></label>
                                     <input type="text" class="form-control" th:field="*{prepTime}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label><b>Cooktime:</b></label>
                                     <input type="text" class="form-control" th:field="*{cookTime}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label><b>Difficulty:</b></label>
-                                    <select class="form-control">
+                                    <select class="form-control" th:field="*{difficulty}">
+                                        <option th:each="difficultyValue : ${difficulties}"
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.name()}">
+                                            val
+                                        </option>
+                                    </select>
+                                    <select class="form-control" th:remove="all">
                                         <option>Easy</option>
                                         <option>Medium</option>
                                         <option>Hard</option>
@@ -78,15 +85,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label><b>Servings:</b></label>
                                     <input type="text" class="form-control" th:field="*{servings}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label><b>Source:</b></label>
                                     <input type="text" class="form-control" th:field="*{source}"/>
                                 </div>
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-4 form-group">
                                     <label><b>URL:</b></label>
                                     <input type="text" class="form-control" th:field="*{url}"/>
                                 </div>
