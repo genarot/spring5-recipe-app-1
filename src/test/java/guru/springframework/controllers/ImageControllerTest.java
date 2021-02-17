@@ -59,6 +59,6 @@ public class ImageControllerTest {
 
         this.mockMvc.perform(multipart("/recipe/1/image").file(multipartFile))
                 .andExpect(status().isFound())
-                .andExpect(header().string("location","/recipes/1/show"));
+                .andExpect(header().string("location","/recipe/1/show"));
     }
 }
