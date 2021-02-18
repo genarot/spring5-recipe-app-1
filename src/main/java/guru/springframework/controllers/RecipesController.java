@@ -46,14 +46,14 @@ public class RecipesController {
     @GetMapping("/recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model) {
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
-        model.addAttribute("difficulties", Difficulty.values());
+//        model.addAttribute("difficulties", Difficulty.values());
 
         return "recipes/recipeform";
     }
 
 
     @PostMapping("/recipe")
-    public String saveOrUpdate(@Valid @ModelAttribute RecipeCommand command, BindingResult bindingResult) {
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(objectError -> {
                 log.debug("Error: " + objectError.toString());

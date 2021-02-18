@@ -37,6 +37,8 @@ public class RecipeCommand {
     @Min(1)
     @Max(100)
     private Integer servings;
+
+    @Size(min = 3, max = 255)
     private String source;
 
     @URL
