@@ -69,9 +69,6 @@ public class Recipe {
                 ", url='" + url + '\'' +
                 ", directions='" + directions + '\'' +
                 ", difficulty=" + difficulty +
-                ", ingredients=" + ingredients +
-                ", note=" + note != null ? note.getRecipeNotes() : "" +
-                ", categories=" + categories +
                 '}';
     }
 }

@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 public class RecipeControllerTest {
 
-
     @Mock
     RecipeService recipeService;
 
@@ -44,11 +43,8 @@ public class RecipeControllerTest {
 
     @Test
     public void testGetRecipe() throws Exception {
-
         Recipe recipe = new Recipe();
         recipe.setId(1L);
-
-
 
         when(recipeService.findById(anyLong())).thenReturn(recipe);
 
@@ -77,8 +73,6 @@ public class RecipeControllerTest {
 
     @Test
     public void testGetNewRecipeForm() throws Exception {
-        RecipeCommand command = new RecipeCommand();
-
         mockMvc.perform(get("/recipe/new"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipes/recipeform"))
@@ -96,10 +90,29 @@ public class RecipeControllerTest {
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .param("id","")
             .param("description", "some string")
+            .param("url","https://ninja.atomicdevs.com")
+            .param("directions", "Some directions")
             )
             .andExpect(status().is3xxRedirection())
             .andExpect(view().name("redirect:/recipe/2/show"));
     }
+
+    @Test
+    public void testPostNewRecipeFormValidationFail() throws Exception {
+        RecipeCommand command = new RecipeCommand();
+        command.setId(2l);
+
+        when(recipeService.saveRecipeCommand(any())).thenReturn(command);
+
+        mockMvc.perform(post("/recipe")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("id","")
+                .param("description", "some string")
+        )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/recipe/2/show"));
+    }
+
 
     @Test
     public void testGetUpdateView() throws Exception {
