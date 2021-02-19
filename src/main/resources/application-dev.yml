@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sfg_dev
+    username: sfg_dev_user
+    password: ninja
+#    initialization-mode: always
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    database: mysql
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: ninja_database_create.sql
+
