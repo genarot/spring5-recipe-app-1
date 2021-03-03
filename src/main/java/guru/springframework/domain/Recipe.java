@@ -1,12 +1,17 @@
 package guru.springframework.domain;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@Document
 public class Recipe {
+    @Id
     private String id;
 
     private String description;
@@ -26,18 +31,15 @@ public class Recipe {
 
     private Note note;
 
+    @DBRef
     private Set<Category> categories = new HashSet<>();
 
 
     public void setNote(Note note) {
         this.note = note;
-        if (note != null) {
-            note.setRecipe(this);
-        }
     }
 
     public Recipe addIngredient(Ingredient ingredient) {
-        ingredient.setRecipe(this);
         this.ingredients.add(ingredient);
         return this;
     }
